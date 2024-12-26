@@ -1,56 +1,91 @@
-# Dogs-vs-Cats-classification-project
-This project demonstrates how to classify images of dogs and cats using a Convolutional Neural Network (CNN) built with TensorFlow and Keras. It includes functionalities for organizing the dataset, building and training the model, making predictions, and visualizing results. Testing when binary classification is done on multiple types of image of a single class i.e dogs and cats breeds in this case how will it work out.
+# Dogs vs Cats Classification Project
 
-Files:
-dogs_cats.py: Python script defining the DogsCats class for dataset preparation, model building, training, saving, loading, and prediction.
-module10.ipynb: Jupyter Notebook for training the model, visualizing training progress, and making predictions.
+A deep learning project for classifying dog and cat images using Convolutional Neural Networks (CNN) with TensorFlow and Keras.
 
-Key Learnings:
+## Overview
 
-Data Preparation
-Dataset Organization: Organize the dataset into training, validation, and test sets using the make_dataset_folders method.
-Image Dataset Creation: Create TensorFlow image datasets from directories using image_dataset_from_directory.
+This project implements a binary image classifier to distinguish between dogs and cats, with additional testing on breed classification. The system utilizes a CNN architecture for robust feature extraction and classification.
 
-Model Building
-CNN Architecture: Build a Convolutional Neural Network (CNN) using TensorFlow and Keras, including layers for data augmentation, convolution, pooling, and dense layers.
-Model Compilation: Compile the model with a loss function, optimizer, and evaluation metrics.
+## Project Structure
 
-Training and Evaluation
-Training Loop: Train the model using the fit method, including the use of callbacks for early stopping, model checkpointing, and TensorBoard logging.
-Performance Visualization: Visualize training and validation accuracy and loss using Matplotlib.
+```
+.
+├── dogs_cats.py        # Main implementation class
+└── module10.ipynb      # Training and visualization notebook
+```
 
-Model Saving and Loading
-Model Saving: Save the trained model to a file using the ModelCheckpoint callback.
-Model Loading: Load a saved model for future use.
+## Features
 
-Prediction
-Image Preprocessing for Prediction: Preprocess images for prediction, including resizing, normalization, and reshaping.
-Making Predictions: Make predictions on new images using the trained model and visualize the results.
+**Dataset Management**
+- Automated dataset organization into train/validation/test splits
+- Built-in data augmentation pipeline
+- Integrated TensorFlow dataset creation
 
-Usage
-Dataset Preparation
-Run the following commands in the Jupyter Notebook to organize the dataset into training, validation, and test sets:
+**Model Architecture**
+- Custom CNN implementation
+- Data augmentation layers
+- Optimized for binary classification
+
+## Installation
+
+```bash
+pip install tensorflow matplotlib numpy
+```
+
+## Usage
+
+**Dataset Preparation**
+```python
+from dogs_cats import DogsCats
+
 dogs_cats = DogsCats()
 dogs_cats.make_dataset_folders('validation', 0, 2400)
 dogs_cats.make_dataset_folders('train', 2400, 12000)
 dogs_cats.make_dataset_folders('test', 12000, 12500)
 dogs_cats.make_dataset()
+```
 
-
-Model Building and Training
-Run the following commands to build and train the CNN model:
+**Model Training**
+```python
 dogs_cats.build_network()
-dogs_cats.model.summary()
 dogs_cats.train('model.dogs-cats')
+```
 
-Model Saving and Loading
-Run the following commands to save and load the trained model:
-dogs_cats.save_model('model.dogs-cats')
-dogs_cats.load_model('model.dogs-cats')
-
-Making Predictions
-Run the following command to make predictions on new images:
+**Prediction**
+```python
 dogs_cats.predict('path/to/image.jpg')
+```
 
-Conclusion
-This project provides a comprehensive understanding of implementing, training, and evaluating a Convolutional Neural Network (CNN) for image classification tasks using TensorFlow and Keras. It demonstrates the integration of various tools and libraries to create a complete workflow for classifying images of dogs and cats, including dataset preparation, model building, training, saving, loading, and making predictions.
+## Model Architecture
+
+The CNN architecture includes:
+- Data augmentation layers
+- Convolutional layers with max pooling
+- Dense layers for classification
+- Binary cross-entropy loss function
+
+## Training Process
+
+**Callbacks Implementation**
+- Early stopping for preventing overfitting
+- Model checkpointing for saving best weights
+- TensorBoard integration for monitoring
+
+## Model Persistence
+
+**Save Model**
+```python
+dogs_cats.save_model('model.dogs-cats')
+```
+
+**Load Model**
+```python
+dogs_cats.load_model('model.dogs-cats')
+```
+
+## Performance Visualization
+
+The project includes tools for visualizing:
+- Training/validation accuracy
+- Loss curves
+- Prediction results
